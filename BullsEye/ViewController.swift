@@ -22,7 +22,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentValue = lroundf(slider.value)
-        startNewRound()
+        newGame(self)
+        
+        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")
+        slider.setThumbImage(thumbImageNormal, for: .normal)
+        
+        let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")
+        slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
+        
+        let insets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        
+        let trackImageLeft = UIImage(named: "SliderTrackLeft")
+        let trackLeftResizable = trackImageLeft?.resizableImage(withCapInsets: insets)
+        slider.setMinimumTrackImage(trackLeftResizable, for: .normal)
+        
+        let trackImageRight = UIImage(named: "SliderTrackRight")
+        let trackRightResizable = trackImageRight?.resizableImage(withCapInsets: insets)
+        slider.setMaximumTrackImage(trackRightResizable, for: .normal)
+        
     }
     
     func updateLabels() {
@@ -80,7 +97,7 @@ class ViewController: UIViewController {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Awesome", style: .default, handler: {
+        let action = UIAlertAction(title: "Continue", style: .default, handler: {
             action in
                 self.startNewRound()
         })
@@ -89,7 +106,6 @@ class ViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
     
 }
 
